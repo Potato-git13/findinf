@@ -1,4 +1,4 @@
-CFLAGS=-g -Wall -Wextra -pedantic -Wformat=2 -Wextra
+CFLAGS=-g -Wall -Wextra -Wpedantic -O3
 compile:
 	mkdir -p bin/
 	gcc -o bin/findinf src/main.c $(CFLAGS)
