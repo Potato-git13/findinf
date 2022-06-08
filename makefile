@@ -1,15 +1,12 @@
-CFLAGS=-g -Wall -Wextra -Wpedantic -O3
+CFLAGS=-Wall -Wextra -Wpedantic -O3
 compile:
 	mkdir -p bin/
 	gcc -o bin/findinf src/main.c $(CFLAGS)
+compile-debug: CFLAGS += -g
+compile-debug: compile
 run:
 	bin/findinf
-push-to-user-bin:
-	cp -p bin/findinf ${HOME}/bin/findinf
-remove-from-user-bin:
-	rm ${HOME}/bin/findinf
-push-to-global-bin:
+install:
 	sudo cp -p bin/findinf /bin/findinf
-remove-from-global-bin:
+uninstall:
 	sudo rm /bin/findinf
-cr:compile run
