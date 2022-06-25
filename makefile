@@ -1,4 +1,4 @@
-CFLAGS=-Wall -Wextra -Wpedantic -O3
+CFLAGS=-Wall -Wextra -Wpedantic -std=c11 -O3
 compile:
 	mkdir -p bin/
 	gcc -o bin/findinf src/main.c $(CFLAGS)
