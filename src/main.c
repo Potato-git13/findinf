@@ -13,6 +13,14 @@ int main(int argc, char *argv[]){
     char buff[BUFF];
     char buff_copy[BUFF];
 
+    if(!strcmp(argv[1], "-h") && argc==2){
+        printf("Usage: findinf [FILE] [STRING]\n\
+\n\
+Options:\n\
+\t-h\tshow this help message, then exit\n");
+        exit(EXIT_SUCCESS);
+    }
+
     if (argc > 3){
         fprintf(stderr, "findinf: Too many arguments\n");
         exit(EXIT_FAILURE);
@@ -20,6 +28,7 @@ int main(int argc, char *argv[]){
         fprintf(stderr, "findinf: Not enough arguments\n");
         exit(EXIT_FAILURE);
     }
+
     if (!fp){
         perror("findinf: ");
     }
