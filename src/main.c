@@ -3,14 +3,19 @@
 #include <string.h>
 
 #define BUFF 1024
+#define VERSION "1.0"
 
 void arg_handler(int argc, char *argv[]){
     // Help message
-    if(argc==2 && !strcmp(argv[1], "-h")){
+    if(argc==2 && (!strcmp(argv[1], "-h") || !strcmp(argv[1], "--help"))){
         printf("Usage: findinf [FILE] [STRING]\n\
 \n\
 Options:\n\
-\t-h\tshow this help message, then exit\n");
+\t-h, --help\tshow this help message, then exit\n\
+\t-v, --version\tshow the version number, then exit\n");
+        exit(EXIT_SUCCESS);
+    } else if (argc==2 && (!strcmp(argv[1], "-v") || !strcmp(argv[1], "--version"))){
+        printf("findinf %s\n", VERSION);
         exit(EXIT_SUCCESS);
     }
 
