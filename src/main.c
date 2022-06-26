@@ -1,9 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <errno.h>
 
-#define BUFF 256
+#define BUFF 1024
+
+void arg_handler(int argc, char *argv[]){
+    // Help message
+    if(argc==2 && !strcmp(argv[1], "-h")){
+        printf("Usage: findinf [FILE] [STRING]\n\
+\n\
+Options:\n\
+\t-h\tshow this help message, then exit\n");
+        exit(EXIT_SUCCESS);
+    }
+
+    // Errors
+    if (argc > 3){
+        fprintf(stderr, "findinf: Too many arguments\n");
+        exit(EXIT_FAILURE);
+    } else if (argc < 3){
+        fprintf(stderr, "findinf: Not enough arguments\n");
+        exit(EXIT_FAILURE);
+    }
+}
 
 int main(int argc, char *argv[]){
     // String to be found
@@ -13,28 +32,19 @@ int main(int argc, char *argv[]){
     char buff[BUFF];
     char buff_copy[BUFF];
 
-    if(!strcmp(argv[1], "-h") && argc==2){
-        printf("Usage: findinf [FILE] [STRING]\n\
-\n\
-Options:\n\
-\t-h\tshow this help message, then exit\n");
-        exit(EXIT_SUCCESS);
-    }
+    // Command line arguments
+    arg_handler(argc, argv);
 
-    if (argc > 3){
-        fprintf(stderr, "findinf: Too many arguments\n");
-        exit(EXIT_FAILURE);
-    } else if (argc < 3){
-        fprintf(stderr, "findinf: Not enough arguments\n");
-        exit(EXIT_FAILURE);
-    }
-
+    // File errors
     if (!fp){
         perror("findinf: ");
     }
 
+    // File reading
     while(fp && fgets(buff, BUFF, fp)){
+        // Copy the string
         strcpy(buff_copy, buff);
+        // Find the string in the buffer and print it out
         if (strstr(buff, str)){
             printf("%s", buff_copy);
         }
