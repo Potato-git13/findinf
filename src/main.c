@@ -14,6 +14,7 @@ Options:\n\
 \t-h, --help\tshow this help message, then exit\n\
 \t-v, --version\tshow the version number, then exit\n");
         exit(EXIT_SUCCESS);
+    // Version message
     } else if (argc==2 && (!strcmp(argv[1], "-v") || !strcmp(argv[1], "--version"))){
         printf("findinf %s\n", VERSION);
         exit(EXIT_SUCCESS);
@@ -35,7 +36,6 @@ int main(int argc, char *argv[]){
     // File to be read
     FILE *fp = fopen(argv[1], "r");
     char buff[BUFF];
-    char buff_copy[BUFF];
 
     // Command line arguments
     arg_handler(argc, argv);
@@ -47,11 +47,9 @@ int main(int argc, char *argv[]){
 
     // File reading
     while(fp && fgets(buff, BUFF, fp)){
-        // Copy the string
-        strcpy(buff_copy, buff);
         // Find the string in the buffer and print it out
         if (strstr(buff, str)){
-            printf("%s", buff_copy);
+            printf("%s", buff);
         }
     }
 }
