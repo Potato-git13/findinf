@@ -5,14 +5,18 @@
 #define BUFF 1024
 #define VERSION "1.0"
 
+const char help[] =
+    "Usage: findinf [FILE] [STRING]\n"
+    "\n"
+    "Options:\n"
+    "\t-h, --help\tshow this help message, then exit\n"
+    "\t-v, --version\tshow the version number, then exit\n"
+    ;
+
 void arg_handler(int argc, char *argv[]){
     // Help message
     if(argc==2 && (!strcmp(argv[1], "-h") || !strcmp(argv[1], "--help"))){
-        printf("Usage: findinf [FILE] [STRING]\n\
-\n\
-Options:\n\
-\t-h, --help\tshow this help message, then exit\n\
-\t-v, --version\tshow the version number, then exit\n");
+        printf("%s", help);
         exit(EXIT_SUCCESS);
     // Version message
     } else if (argc==2 && (!strcmp(argv[1], "-v") || !strcmp(argv[1], "--version"))){
